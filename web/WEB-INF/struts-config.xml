@@ -4,21 +4,44 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
 
-
 <struts-config>
     <form-beans>
-    
+        <form-bean name="Form01VistaControlador" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="respuesta" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form02SumarNumeros" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="numero1" type="java.lang.String"/>
+            <form-property name="numero2" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form03TablaMultiplicar" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="respuesta" type="java.lang.String"/>
+        </form-bean>
     </form-beans>
     
-    <global-exceptions>
-    
+    <global-exceptions>    
     </global-exceptions>
 
     <global-forwards>
         <forward name="welcome"  path="/Welcome.do"/>
+        <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
     </global-forwards>
 
     <action-mappings>
+        <action path="/Action03TablaMultiplicar" 
+                type="controllers.Action03TablaMultiplicar"
+                name="Form03TablaMultiplicar"
+                scope="request"
+                input="/web03tablamultiplicar.jsp"/>
+        <action path="/Action02SumarNumeros" 
+                type="controllers.Action02SumarNumeros"
+                name="Form02SumarNumeros"
+                scope="request"
+                input="/web02sumarnumeros.jsp"/>
+        <action path="/Action01VistaControlador" 
+                type="controllers.Action01VistaControlador"
+                name="Form01VistaControlador"
+                scope="request"
+                input="/web01pregunta.jsp"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     

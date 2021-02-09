@@ -16,6 +16,10 @@
         <form-bean name="Form03TablaMultiplicar" type="org.apache.struts.action.DynaActionForm">
             <form-property name="respuesta" type="java.lang.String"/>
         </form-bean>
+        <form-bean name="Form031Collatz" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="numcollatz" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form05Persona" type="forms.Form05Persona"/>
     </form-beans>
     
     <global-exceptions>    
@@ -25,8 +29,24 @@
         <forward name="welcome"  path="/Welcome.do"/>
         <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
     </global-forwards>
-
+    
+    <!--    path  - 
+            type  - The fully qualified class name of the Action.
+            name  - The logical name of the Form bean.
+            scope - Scope of the Form bean.
+            input -
+    -->
     <action-mappings>
+        <action input="/web05persona.jsp" 
+                name="Form05Persona" 
+                path="/Action05Persona" 
+                scope="request" 
+                type="controllers.Action05Persona"/>
+        <action path="/Action031Collatz"
+                type="controllers.Action031Collatz"
+                name="Form031Collatz"
+                scope="request"
+                input="/web031collatz.jsp"/>
         <action path="/Action03TablaMultiplicar" 
                 type="controllers.Action03TablaMultiplicar"
                 name="Form03TablaMultiplicar"

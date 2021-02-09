@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Struts - Prácticas</title>
+        <title>MVC con Struts - Prácticas</title>
     </head>
     <body>
         <h1>Tabla de Multiplicar</h1>

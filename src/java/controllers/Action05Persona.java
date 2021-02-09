@@ -10,13 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.DynaActionForm;
 
 /**
  *
  * @author lscar
  */
-public class Action01VistaControlador extends org.apache.struts.action.Action {
+public class Action05Persona extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -32,21 +31,10 @@ public class Action01VistaControlador extends org.apache.struts.action.Action {
      * @return
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, 
-                                 ActionForm form,
-                                 HttpServletRequest request, 
-                                 HttpServletResponse response) throws Exception {
-        // La info viene con un form del tipo DynaActionForm
-        DynaActionForm formulario = (DynaActionForm) form;
-        String respuesta = formulario.get("respuesta").toString();
-        int valor = Integer.parseInt(respuesta);
-        if (valor == 4) {
-            // Respuesta correcta. Le envimos el usuario a otra página.
-            return mapping.findForward("respuestacorrecta");
-        } else {
-            // Respuesta incorrecta. Le mantenemos en la misma
-            // página de la petición.
-            return mapping.getInputForward();
-        }
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        
+        return mapping.findForward(SUCCESS);
     }
 }

@@ -38,12 +38,13 @@ public class Action03TablaMultiplicar extends org.apache.struts.action.Action {
                                  HttpServletResponse response) throws Exception {
         
         DynaActionForm formulario = (DynaActionForm) form;
-        String dato1 = formulario.get("respuesta").toString();
-        int multiplicando = Integer.parseInt(dato1);
+        String z_ui = formulario.get("respuesta").toString();
+        int z_multiplicando = Integer.parseInt(z_ui);
         String html = "";
         for(int i=1; i<=10; i++) {
-            html += "<tr><td>" + i + " * " + multiplicando + " = " + (i*multiplicando) + "</td></tr>";
+            html += "<tr><td>" + i + " * " + z_multiplicando + " = " + (i*z_multiplicando) + "</td></tr>";
         }
         request.setAttribute("tablamulti", html);
-        return mapping.getInputForward();    }
+        return mapping.getInputForward();
+    }
 }

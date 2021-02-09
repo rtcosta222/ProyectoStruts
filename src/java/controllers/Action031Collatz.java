@@ -16,7 +16,7 @@ import org.apache.struts.action.DynaActionForm;
  *
  * @author lscar
  */
-public class Action01VistaControlador extends org.apache.struts.action.Action {
+public class Action031Collatz extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -33,20 +33,24 @@ public class Action01VistaControlador extends org.apache.struts.action.Action {
      */
     @Override
     public ActionForward execute(ActionMapping mapping, 
-                                 ActionForm form,
-                                 HttpServletRequest request, 
-                                 HttpServletResponse response) throws Exception {
-        // La info viene con un form del tipo DynaActionForm
+                                ActionForm form,
+                                HttpServletRequest request,
+                                HttpServletResponse response) throws Exception {
+        
         DynaActionForm formulario = (DynaActionForm) form;
-        String respuesta = formulario.get("respuesta").toString();
-        int valor = Integer.parseInt(respuesta);
-        if (valor == 4) {
-            // Respuesta correcta. Le envimos el usuario a otra página.
-            return mapping.findForward("respuestacorrecta");
-        } else {
-            // Respuesta incorrecta. Le mantenemos en la misma
-            // página de la petición.
-            return mapping.getInputForward();
+        String z_ui = formulario.get("numcollatz").toString();
+        int z_num = Integer.parseInt(z_ui);
+        String html = "";
+        
+        while (z_num != 1) {
+            if (z_num%2 == 0) {
+                z_num = z_num/2;
+            } else {
+                z_num = (z_num*3)+1;
+            }
+            html += "<li>" + z_num + "</li>";
         }
+        request.setAttribute("collatzejecucion", html);
+        return mapping.getInputForward();
     }
 }

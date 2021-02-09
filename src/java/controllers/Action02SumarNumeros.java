@@ -36,6 +36,7 @@ public class Action02SumarNumeros extends org.apache.struts.action.Action {
                                  ActionForm form,
                                  HttpServletRequest request, 
                                  HttpServletResponse response) throws Exception {
+        
         DynaActionForm formulario = (DynaActionForm) form;
         String dato1 = formulario.get("numero1").toString();
         String dato2 = formulario.get("numero2").toString();

@@ -5,18 +5,18 @@
  */
 package controllers;
 
-import forms.Form05Persona;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 
 /**
  *
  * @author lscar
  */
-public class Action05Persona extends org.apache.struts.action.Action {
+public class NewStrutsAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -37,15 +37,10 @@ public class Action05Persona extends org.apache.struts.action.Action {
                                 HttpServletRequest request, 
                                 HttpServletResponse response) throws Exception {
         
-        Form05Persona formulario = (Form05Persona) form;
-        String nombre = formulario.getNombre();
-        String email = formulario.getEmail();
-        int edad = formulario.getEdad();
-        String html = "<h1>" + nombre + "</h1>";
-        html += "<h1>" + email + "</h1>";
-        html += "<h1>" + edad + "</h1>";
-        request.setAttribute("datospersona", html);
-        // Volvemos a la mismaa página.
+        DynaActionForm formulario = (DynaActionForm) form;
+        String z_ui = formulario.get("znombre").toString();
+        String html = "<h2 style='color:blue'>Su nombre es " + z_ui + "</h2>";
+        request.setAttribute("nombre", html);
         return mapping.getInputForward();
     }
 }

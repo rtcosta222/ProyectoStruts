@@ -5,22 +5,29 @@
  */
 package controllers;
 
-import forms.Form05Persona;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Departamento;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import repositories.RepositoryDepartamentos;
 
 /**
  *
  * @author lscar
  */
-public class Action05Persona extends org.apache.struts.action.Action {
+public class Action06Departamentos extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
-
+    RepositoryDepartamentos repo;
+    
+    public Action06Departamentos() {
+        this.repo = new RepositoryDepartamentos();
+    }
+    
     /**
      * This is the action called from the Struts framework.
      *
@@ -34,18 +41,17 @@ public class Action05Persona extends org.apache.struts.action.Action {
     @Override
     public ActionForward execute(ActionMapping mapping, 
                                 ActionForm form,
-                                HttpServletRequest request, 
+                                HttpServletRequest request,    
                                 HttpServletResponse response) throws Exception {
         
-        Form05Persona formulario = (Form05Persona) form;
-        String nombre = formulario.getNombre();
-        String email = formulario.getEmail();
-        int edad = formulario.getEdad();
-        String html = "<h1>" + nombre + "</h1>";
-        html += "<h1>" + email + "</h1>";
-        html += "<h1>" + edad + "</h1>";
-        request.setAttribute("datospersona", html);
-        // Volvemos a la mismaa página.
+        ArrayList<Departamento> depts = this.repo.getDepartamentos();
+        String html = "";
+        for(Departamento d: depts) {
+            html += "<tr><td>" + d.getNumero()+ "</td>"
+                   + "<td>" + d.getNombre()+ "</td>"
+                   + "<td>" + d.getLocalidad()+ "</td></tr>";
+        }
+        request.setAttribute("datosdept", html);
         return mapping.getInputForward();
     }
 }

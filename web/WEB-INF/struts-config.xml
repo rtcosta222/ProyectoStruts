@@ -20,6 +20,11 @@
             <form-property name="numcollatz" type="java.lang.String"/>
         </form-bean>
         <form-bean name="Form05Persona" type="forms.Form05Persona"/>
+        <form-bean name="Form06Departamentos" type="org.apache.struts.action.DynaActionForm"/>
+        <form-bean name="NewForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="znombre" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="NewStrutsActionForm" type="forms.NewStrutsActionForm"/>
     </form-beans>
     
     <global-exceptions>    
@@ -30,13 +35,24 @@
         <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
     </global-forwards>
     
-    <!--    path  - 
+    <!--    path  - Name of the Action.
             type  - The fully qualified class name of the Action.
-            name  - The logical name of the Form bean.
+            name  - The logical name of the Form bean associated with this acion.
             scope - Scope of the Form bean.
-            input -
+            input - Module-relative path of the action to which control should 
+                    be returned if a validation error is encountered.
     -->
     <action-mappings>
+        <action input="/newjsp.jsp"
+                name="NewForm"
+                path="/NewStrutsAction"
+                scope="request"
+                type="controllers.NewStrutsAction"/>
+        <action input="/web06departamentos.jsp"
+                name="Form06Departamentos" 
+                path="/Action06Departamentos" 
+                scope="request" 
+                type="controllers.Action06Departamentos"/>
         <action input="/web05persona.jsp" 
                 name="Form05Persona" 
                 path="/Action05Persona" 

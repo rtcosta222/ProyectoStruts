@@ -45,6 +45,7 @@ public class Action03TablaMultiplicar extends org.apache.struts.action.Action {
             html += "<tr><td>" + i + " * " + z_multiplicando + " = " + (i*z_multiplicando) + "</td></tr>";
         }
         request.setAttribute("tablamulti", html);
+        // Volvemos a la mismaa página.
         return mapping.getInputForward();
     }
 }

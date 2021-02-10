@@ -12,19 +12,21 @@ import models.Departamento;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import repositories.RepositoryDepartamentos;
 
 /**
  *
  * @author lscar
  */
-public class Action06Departamentos extends org.apache.struts.action.Action {
+public class Action08InsertarDepartamento extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    
     RepositoryDepartamentos repo;
     
-    public Action06Departamentos() {
+    public Action08InsertarDepartamento() {
         this.repo = new RepositoryDepartamentos();
     }
     /**
@@ -40,8 +42,16 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
     @Override
     public ActionForward execute(ActionMapping mapping, 
                                 ActionForm form,
-                                HttpServletRequest request,    
+                                HttpServletRequest request,     
                                 HttpServletResponse response) throws Exception {
+        
+        DynaActionForm formulario = (DynaActionForm) form;
+        String ui = formulario.get("deptno").toString();
+        int z_deptno = Integer.parseInt(ui);
+        String z_dnombre = formulario.get("dnombre").toString();
+        String z_loc = formulario.get("loc").toString();
+        
+        this.repo.insertarDepartamento(z_deptno, z_dnombre, z_loc);
         
         ArrayList<Departamento> depts = this.repo.getDepartamentos();
         String html = "";
@@ -51,7 +61,6 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
                    + "<td>" + d.getLocalidad()+ "</td></tr>";
         }
         request.setAttribute("datosdept", html);
-        // Volvemos alamisma Vista.
         return mapping.getInputForward();
     }
 }

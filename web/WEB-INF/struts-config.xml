@@ -25,6 +25,16 @@
             <form-property name="znombre" type="java.lang.String"/>
         </form-bean>
         <form-bean name="NewStrutsActionForm" type="forms.NewStrutsActionForm"/>
+        <form-bean name="Form07BuscarDepartamentos" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="deptno" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form08InsertarDepartamento" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="deptno" type="java.lang.String"/>
+            <form-property name="dnombre" type="java.lang.String"/>
+            <form-property name="loc" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form082InsertarDepartamento" type="forms.Form082InsertarDepartamento"/>
+        <form-bean name="Form081InsertarDepartamento" type="forms.Form081InsertarDepartamento"/>
     </form-beans>
     
     <global-exceptions>    
@@ -33,6 +43,7 @@
     <global-forwards>
         <forward name="welcome"  path="/Welcome.do"/>
         <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
+        <forward name="buscardepartamentos" path="/web07buscardepartamentos.jsp"/>
     </global-forwards>
     
     <!--    path  - Name of the Action.
@@ -43,6 +54,25 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
+        <action input="/web82insertardepartamento.jsp" 
+                name="Form082InsertarDepartamento" 
+                path="/Action82InsertarDepartamento" 
+                scope="request" 
+                type="controllers.Action82InsertarDepartamento"/>
+        <action input="/web081insertardepartamento.jsp" 
+                name="Form081InsertarDepartamento" 
+                path="/Action081InsertarDepartamento" 
+                scope="request" 
+                type="controllers.Action081InsertarDepartamento"/>
+        <action path="/Action08InsertarDepartamento" 
+                type="controllers.Action08InsertarDepartamento"
+                name="Form08InsertarDepartamento"
+                scope="request"
+                input="/web08insertardepartamento.jsp"/>
+        <action path="/Action07BuscarDepartamentos"
+                name="Form07BuscarDepartamentos"
+                scope="request"
+                type="controllers.Action07BuscarDepartamentos"/>
         <action input="/newjsp.jsp"
                 name="NewForm"
                 path="/NewStrutsAction"

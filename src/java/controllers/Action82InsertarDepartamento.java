@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import forms.Form082InsertarDepartamento;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +19,17 @@ import repositories.RepositoryDepartamentos;
  *
  * @author lscar
  */
-public class Action06Departamentos extends org.apache.struts.action.Action {
+public class Action82InsertarDepartamento extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    
     RepositoryDepartamentos repo;
     
-    public Action06Departamentos() {
+    public Action82InsertarDepartamento() {
         this.repo = new RepositoryDepartamentos();
     }
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -38,10 +41,15 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
      * @return
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, 
-                                ActionForm form,
-                                HttpServletRequest request,    
-                                HttpServletResponse response) throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        
+        Form082InsertarDepartamento formulario = (Form082InsertarDepartamento) form;
+        int z_deptno = formulario.getDeptno();
+        String z_dnombre = formulario.getDnombre();
+        String z_loc = formulario.getLoc();
+        this.repo.insertarDepartamento(z_deptno, z_dnombre, z_loc);
         
         ArrayList<Departamento> depts = this.repo.getDepartamentos();
         String html = "";
@@ -51,7 +59,5 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
                    + "<td>" + d.getLocalidad()+ "</td></tr>";
         }
         request.setAttribute("datosdept", html);
-        // Volvemos alamisma Vista.
-        return mapping.getInputForward();
-    }
+        return mapping.getInputForward();    }
 }

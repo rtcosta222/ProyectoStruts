@@ -36,8 +36,8 @@ public class RepositoryDepartamentos {
         ArrayList<Departamento> lista = new ArrayList<>();
         while (z_rs.next()) {
             Departamento dept = new Departamento(z_rs.getInt("DEPT_NO"), 
-                                                    z_rs.getString("DNOMBRE"),
-                                                    z_rs.getString("LOC"));
+                                                 z_rs.getString("DNOMBRE"),
+                                                 z_rs.getString("LOC"));
             lista.add(dept);
         }
         z_rs.close();
@@ -51,18 +51,15 @@ public class RepositoryDepartamentos {
         PreparedStatement z_pst = z_conn.prepareStatement(z_sql);
         z_pst.setInt(1, deptno);
         ResultSet z_rs = z_pst.executeQuery();
+        Departamento z_dept = null;
         if(z_rs.next()) {
-            Departamento z_dept = new Departamento(z_rs.getInt("DEPT_NO"),
-                                                   z_rs.getString("DNOMBRE"),
-                                                   z_rs.getString("LOC"));
-            z_rs.close();
-            z_conn.close();
-            return z_dept;
-        } else {
-            z_rs.close();
-            z_conn.close();
-            return null;
+            z_dept = new Departamento(z_rs.getInt("DEPT_NO"),
+                                      z_rs.getString("DNOMBRE"),
+                                      z_rs.getString("LOC"));
         }
+        z_rs.close();
+        z_conn.close();
+        return z_dept;
     }
     
     public void insertarDepartamento(int deptno, String dnombre, String loc) throws SQLException {

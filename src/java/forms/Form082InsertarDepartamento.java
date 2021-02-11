@@ -67,6 +67,7 @@ public class Form082InsertarDepartamento extends org.apache.struts.action.Action
      * @param request The HTTP Request we are processing.
      * @return
      */
+    // De donde saleeste método?
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 
         ActionErrors errors = new ActionErrors();

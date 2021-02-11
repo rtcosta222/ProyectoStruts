@@ -20,16 +20,16 @@
     </head>
     <body>
         <h1>Insertar Dept v3</h1>
-        <html:form action="/Action82InsertarDepartamento">
-            <label>Introduzca DEPT_NO: </label>
+        <html:form action="/Action082InsertarDepartamento">
+            <label>Introduzca Dept_no: </label>
             <html:text property="deptno"/>
-                <span style="color:red"><html:errors property="numero"/></span>
-            <label>Introduzca DNOMBRE: </label>
+                <span style="color:red"><html:errors property="numero"/></span><br/>
+            <label>Introduzca Nombre: </label>
             <html:text property="dnombre"/>
-                <span style="color:red"><html:errors property="nombre"/></span>
-            <label>Introduzca LOC: </label>
+                <span style="color:red"><html:errors property="nombre"/></span><br/>
+            <label>Introduzca Localidad: </label>
             <html:text property="loc"/>
-                <span style="color:red"><html:errors property="loc"/></span>
+                <span style="color:red"><html:errors property="loc"/></span><br/>
             <html:submit value="Presione para insertar Dept"/>
         </html:form>
             

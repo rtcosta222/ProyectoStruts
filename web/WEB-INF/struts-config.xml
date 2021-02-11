@@ -35,7 +35,21 @@
         </form-bean>
         <form-bean name="Form082InsertarDepartamento" type="forms.Form082InsertarDepartamento"/>
         <form-bean name="Form081InsertarDepartamento" type="forms.Form081InsertarDepartamento"/>
-    </form-beans>
+        <form-bean name="Form08GetDepartamentos" type="org.apache.struts.action.DynaActionForm"/>
+        <form-bean name="Form09InsertHospitales" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="hcod" type="java.lang.String"/>
+            <form-property name="hnom" type="java.lang.String"/>
+            <form-property name="hdir" type="java.lang.String"/>
+            <form-property name="htel" type="java.lang.String"/>
+            <form-property name="hncamas" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Rform09InsertHospitales" type="forms.Rform09InsertHospitales"/>
+            <form-property name="hcod" type="java.lang.String"/>
+            <form-property name="hnom" type="java.lang.String"/>
+            <form-property name="hdir" type="java.lang.String"/>
+            <form-property name="htel" type="java.lang.String"/>
+            <form-property name="hncamas" type="java.lang.String"/>
+        </form-bean>
     
     <global-exceptions>    
     </global-exceptions>
@@ -54,11 +68,21 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
-        <action input="/web82insertardepartamento.jsp" 
+        <action path="/Raction09InsertHospitales" 
+                type="controllers.Raction09InsertHospitales"
+                name="Rform09InsertHospitales"
+                input="/rweb08gethospitales.jsp"
+                scope="request"/>
+        <action path="/Raction08GetDepartamentos" 
+                type="controllers.Raction08GetDepartamentos"
+                name="Form08GetDepartamentos"
+                input="/rweb08getdepartamentos.jsp"
+                scope="request"/>
+        <action input="/web082insertardepartamento.jsp" 
                 name="Form082InsertarDepartamento" 
-                path="/Action82InsertarDepartamento" 
+                path="/Action082InsertarDepartamento" 
                 scope="request" 
-                type="controllers.Action82InsertarDepartamento"/>
+                type="controllers.Action082InsertarDepartamento"/>
         <action input="/web081insertardepartamento.jsp" 
                 name="Form081InsertarDepartamento" 
                 path="/Action081InsertarDepartamento" 

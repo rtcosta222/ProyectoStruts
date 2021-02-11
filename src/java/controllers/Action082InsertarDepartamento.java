@@ -19,14 +19,14 @@ import repositories.RepositoryDepartamentos;
  *
  * @author lscar
  */
-public class Action82InsertarDepartamento extends org.apache.struts.action.Action {
+public class Action082InsertarDepartamento extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
     
     RepositoryDepartamentos repo;
     
-    public Action82InsertarDepartamento() {
+    public Action082InsertarDepartamento() {
         this.repo = new RepositoryDepartamentos();
     }
 

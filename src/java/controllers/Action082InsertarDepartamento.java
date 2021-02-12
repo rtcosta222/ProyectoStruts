@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import Beans.BeanDepartamentos;
 import forms.Form082InsertarDepartamento;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +22,12 @@ import repositories.RepositoryDepartamentos;
  */
 public class Action082InsertarDepartamento extends org.apache.struts.action.Action {
 
-    /* forward name="success" path="" */
-    private static final String SUCCESS = "success";
-    
     RepositoryDepartamentos repo;
+    BeanDepartamentos bean;
     
     public Action082InsertarDepartamento() {
         this.repo = new RepositoryDepartamentos();
+        this.bean = new BeanDepartamentos();
     }
 
     /**
@@ -41,23 +41,17 @@ public class Action082InsertarDepartamento extends org.apache.struts.action.Acti
      * @return
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public ActionForward execute(ActionMapping mapping, 
+                                 ActionForm form,
+                                 HttpServletRequest request, 
+                                 HttpServletResponse response) throws Exception {
         
         Form082InsertarDepartamento formulario = (Form082InsertarDepartamento) form;
         int z_deptno = formulario.getDeptno();
         String z_dnombre = formulario.getDnombre();
         String z_loc = formulario.getLoc();
         this.repo.insertarDepartamento(z_deptno, z_dnombre, z_loc);
-        
-        ArrayList<Departamento> depts = this.repo.getDepartamentos();
-        String html = "";
-        for(Departamento d: depts) {
-            html += "<tr><td>" + d.getNumero()+ "</td>"
-                   + "<td>" + d.getNombre()+ "</td>"
-                   + "<td>" + d.getLocalidad()+ "</td></tr>";
-        }
+        String html = this.bean.getDepartamentos();
         request.setAttribute("datosdept", html);
         return mapping.getInputForward();    }
 }

@@ -20,8 +20,6 @@ import repositories.RepositoryDepartamentos;
  */
 public class Action06Departamentos extends org.apache.struts.action.Action {
 
-    /* forward name="success" path="" */
-    private static final String SUCCESS = "success";
     RepositoryDepartamentos repo;
     
     public Action06Departamentos() {

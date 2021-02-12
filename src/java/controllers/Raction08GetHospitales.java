@@ -5,10 +5,9 @@
  */
 package controllers;
 
-import java.util.ArrayList;
+import Beans.BeanHospitales;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Hospital;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -20,12 +19,12 @@ import repositories.RepositoryHospital;
  */
 public class Raction08GetHospitales extends org.apache.struts.action.Action {
 
-    /* forward name="success" path="" */
-    private static final String SUCCESS = "success";
     RepositoryHospital repo;
+    BeanHospitales bean;
     
     public Raction08GetHospitales() {
         this.repo = new RepositoryHospital();
+        this.bean = new BeanHospitales();
     }
 
     /**
@@ -44,17 +43,7 @@ public class Raction08GetHospitales extends org.apache.struts.action.Action {
                                 HttpServletRequest request,     
                                 HttpServletResponse response) throws Exception {
         
-        ArrayList<Hospital> hospitales = repo.getHospitales();
-        String html = "";
-        for(Hospital h: hospitales) {
-            html += "<tr>";
-            html += "<td>" + h.getCod() + "</td><td>"
-                           + h.getNombre() + "</td><td>" 
-                           + h.getDir() + "</td><td>"
-                           + h.getTel() + "</td><td>"
-                           + h.getNumcama() + "</td>";
-            html += "</tr>";
-        }
+        String html = this.bean.getHospitales();
         request.setAttribute("allhosps", html);
         return mapping.getInputForward();
     }

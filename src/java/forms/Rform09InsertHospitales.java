@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import models.Hospital;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
@@ -25,7 +26,7 @@ public class Rform09InsertHospitales extends org.apache.struts.action.ActionForm
     private String hnom;
     private String hdir;
     private String htel;
-    private int hnc;
+    private int hncamas;
     RepositoryHospital repo;
 
     public int getHcod() {
@@ -60,17 +61,18 @@ public class Rform09InsertHospitales extends org.apache.struts.action.ActionForm
         this.htel = htel;
     }
 
-    public int getHnc() {
-        return hnc;
+    public int getHncamas() {
+        return hncamas;
     }
 
-    public void setHnc(int hnc) {
-        this.hnc = hnc;
+    public void setHncamas(int hnc) {
+        this.hncamas = hnc;
     }
 
     public Rform09InsertHospitales() {
         this.repo = new RepositoryHospital();
         // TODO Auto-generated constructor stub
+        
     }
 
     /**
@@ -80,10 +82,11 @@ public class Rform09InsertHospitales extends org.apache.struts.action.ActionForm
      * @param request The HTTP Request we are processing.
      * @return
      */
+    @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
         try {
-            if (this.repo.buscarHospital(getHcod()) == true) {
+            if(this.repo.getHospital(this.getHcod()) != null) {
                 errors.add("numero", new ActionMessage("error.hcod.duplicated"));
             } else if (getHnom() == null || getHnom().length() < 1) {
                 errors.add("nombre", new ActionMessage("error.hname.required"));

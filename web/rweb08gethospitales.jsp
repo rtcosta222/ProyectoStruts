@@ -16,7 +16,7 @@
         <title>MVC con Struts</title>
     </head>
     <body>
-        <h1>Mostrar Hospitales</h1>
+        <h1>Insertar Hospital</h1>
         <html:form action="/Raction09InsertHospitales">
             <label>Hospital cod.: </label>
             <html:text property="hcod"/><br/>

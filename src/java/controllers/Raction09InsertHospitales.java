@@ -5,15 +5,15 @@
  */
 package controllers;
 
+import Beans.BeanDepartamentos;
+import Beans.BeanHospitales;
 import forms.Rform09InsertHospitales;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Hospital;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.DynaActionForm;
 import repositories.RepositoryHospital;
 
 /**
@@ -22,13 +22,14 @@ import repositories.RepositoryHospital;
  */
 public class Raction09InsertHospitales extends org.apache.struts.action.Action {
 
-    /* forward name="success" path="" */
-    private static final String SUCCESS = "success";
     RepositoryHospital repo;
+    BeanHospitales bean;
     
     public Raction09InsertHospitales() {
         this.repo = new RepositoryHospital();
+        this.bean = new BeanHospitales();
     }
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -47,23 +48,26 @@ public class Raction09InsertHospitales extends org.apache.struts.action.Action {
         
         Rform09InsertHospitales formulario = (Rform09InsertHospitales) form;
         int hcod = formulario.getHcod();
-        String hnom = formulario.getHnom().toString();
-        String hdir = formulario.getHdir().toString();
-        String htel = formulario.getHtel().toString();
-        int hncamas = formulario.getHnc();
+        String hnom = formulario.getHnom();
+        String hdir = formulario.getHdir();
+        String htel = formulario.getHtel();
+        int hncamas = formulario.getHncamas();
         this.repo.insertHospital(hcod, hnom, hdir, htel, hncamas);
-        
-        ArrayList<Hospital> hospitales = repo.getHospitales();
-        String html = "";
-        for(Hospital h: hospitales) {
-            html += "<tr>";
-            html += "<td>" + h.getCod() + "</td><td>"
-                           + h.getNombre() + "</td><td>" 
-                           + h.getDir() + "</td><td>"
-                           + h.getTel() + "</td><td>"
-                           + h.getNumcama() + "</td>";
-            html += "</tr>";
-        }
+
+        // The next line (calling the bean Hospital class) is equivalent to 
+        // the next commented lines.
+        String html = this.bean.getHospitales();
+//        ArrayList<Hospital> hospitales = repo.getHospitales();
+//        String html = "";
+//        for(Hospital h: hospitales) {
+//            html += "<tr>";
+//            html += "<td>" + h.getCod() + "</td><td>"
+//                           + h.getNombre() + "</td><td>" 
+//                           + h.getDir() + "</td><td>"
+//                           + h.getTel() + "</td><td>"
+//                           + h.getNumcama() + "</td>";
+//            html += "</tr>";
+//        }
         request.setAttribute("allhosps", html);
         return mapping.getInputForward();
     }

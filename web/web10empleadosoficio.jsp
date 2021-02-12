@@ -1,6 +1,6 @@
 <%-- 
-    Document   : webmenu
-    Created on : 11-feb-2021, 17:29:46
+    Document   : web10empleadosoficio
+    Created on : 11-feb-2021, 19:23:51
     Author     : lscar
 --%>
 
@@ -13,16 +13,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MVC con Struts</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Menu de Struts</h1>
-        <ul>
-            <li>
-                <html:link href="/web02sumarnumeros.jsp">
-                    SUmar números
-                </html:link>
-            </li>
-        </ul>
+        <h1>Hello World!</h1>
     </body>
 </html>

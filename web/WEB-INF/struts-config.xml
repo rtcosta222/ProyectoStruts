@@ -36,26 +36,19 @@
         <form-bean name="Form082InsertarDepartamento" type="forms.Form082InsertarDepartamento"/>
         <form-bean name="Form081InsertarDepartamento" type="forms.Form081InsertarDepartamento"/>
         <form-bean name="Form08GetDepartamentos" type="org.apache.struts.action.DynaActionForm"/>
-        <form-bean name="Form09InsertHospitales" type="org.apache.struts.action.DynaActionForm">
-            <form-property name="hcod" type="java.lang.String"/>
-            <form-property name="hnom" type="java.lang.String"/>
-            <form-property name="hdir" type="java.lang.String"/>
-            <form-property name="htel" type="java.lang.String"/>
-            <form-property name="hncamas" type="java.lang.String"/>
-        </form-bean>
         <form-bean name="Rform09InsertHospitales" type="forms.Rform09InsertHospitales"/>
             <form-property name="hcod" type="java.lang.String"/>
             <form-property name="hnom" type="java.lang.String"/>
             <form-property name="hdir" type="java.lang.String"/>
             <form-property name="htel" type="java.lang.String"/>
             <form-property name="hncamas" type="java.lang.String"/>
-        </form-bean>
+        </form-beans>
     
     <global-exceptions>    
     </global-exceptions>
 
     <global-forwards>
-        <forward name="welcome"  path="/Welcome.do"/>
+        <forward name="welcome" path="/Welcome.do"/>
         <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
         <forward name="buscardepartamentos" path="/web07buscardepartamentos.jsp"/>
     </global-forwards>

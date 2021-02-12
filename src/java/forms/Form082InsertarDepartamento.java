@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import models.Departamento;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
@@ -67,7 +66,7 @@ public class Form082InsertarDepartamento extends org.apache.struts.action.Action
      * @param request The HTTP Request we are processing.
      * @return
      */
-    // De donde saleeste método?
+    // De donde sale este método? The struts. Se trata de un ActionForm. Generado auto.
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 
         ActionErrors errors = new ActionErrors();

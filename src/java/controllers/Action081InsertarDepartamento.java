@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import Beans.BeanDepartamentos;
 import forms.Form081InsertarDepartamento;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +26,11 @@ public class Action081InsertarDepartamento extends org.apache.struts.action.Acti
     private static final String SUCCESS = "success";
     
     RepositoryDepartamentos repo;
+    BeanDepartamentos bean;
     
     public Action081InsertarDepartamento() {
         this.repo = new RepositoryDepartamentos();
+        this.bean = new BeanDepartamentos();
     }
 
     /**
@@ -42,23 +45,16 @@ public class Action081InsertarDepartamento extends org.apache.struts.action.Acti
      */
     @Override
     public ActionForward execute(ActionMapping mapping, 
-                                ActionForm form,
-                                HttpServletRequest request, 
-                                HttpServletResponse response) throws Exception {
+                                 ActionForm form,
+                                 HttpServletRequest request, 
+                                 HttpServletResponse response) throws Exception {
         
         Form081InsertarDepartamento formulario = (Form081InsertarDepartamento) form;
         int z_deptno = formulario.getDeptno();
         String z_dnombre = formulario.getDnombre();
         String z_loc = formulario.getLoc();
         this.repo.insertarDepartamento(z_deptno, z_dnombre, z_loc);
-        
-        ArrayList<Departamento> depts = this.repo.getDepartamentos();
-        String html = "";
-        for(Departamento d: depts) {
-            html += "<tr><td>" + d.getNumero()+ "</td>"
-                   + "<td>" + d.getNombre()+ "</td>"
-                   + "<td>" + d.getLocalidad()+ "</td></tr>";
-        }
+        String html = this.bean.getDepartamentos();
         request.setAttribute("datosdept", html);
         return mapping.getInputForward();
     }

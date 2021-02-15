@@ -18,13 +18,14 @@ import repositories.RepositoryDepartamentos;
  *
  * @author lscar
  */
-public class Action06Departamentos extends org.apache.struts.action.Action {
+public class Action09MenuDepartamentosDinamico extends org.apache.struts.action.Action {
 
     RepositoryDepartamentos repo;
     
-    public Action06Departamentos() {
-        this.repo = new RepositoryDepartamentos();
+    public Action09MenuDepartamentosDinamico () {
+            this.repo = new RepositoryDepartamentos();
     }
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -38,18 +39,11 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
     @Override
     public ActionForward execute(ActionMapping mapping, 
                                 ActionForm form,
-                                HttpServletRequest request,    
+                                HttpServletRequest request, 
                                 HttpServletResponse response) throws Exception {
         
         ArrayList<Departamento> depts = this.repo.getDepartamentos();
-        String html = "";
-        for(Departamento d: depts) {
-            html += "<tr><td>" + d.getNumero()+ "</td>"
-                   + "<td>" + d.getNombre()+ "</td>"
-                   + "<td>" + d.getLocalidad()+ "</td></tr>";
-        }
-        request.setAttribute("datosdept", html);
-        // Volvemos a la misma View.
-        return mapping.getInputForward();
+        request.setAttribute("deptsname", depts);
+        return mapping.findForward("webmenudeptsdinamico");
     }
 }

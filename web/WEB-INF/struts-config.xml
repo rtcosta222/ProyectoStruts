@@ -36,21 +36,41 @@
         <form-bean name="Form082InsertarDepartamento" type="forms.Form082InsertarDepartamento"/>
         <form-bean name="Form081InsertarDepartamento" type="forms.Form081InsertarDepartamento"/>
         <form-bean name="Form08GetDepartamentos" type="org.apache.struts.action.DynaActionForm"/>
-        <form-bean name="Rform09InsertHospitales" type="forms.Rform09InsertHospitales"/>
+        <form-bean name="Rform09InsertHospitales" type="forms.Rform09InsertHospitales">
             <form-property name="hcod" type="java.lang.String"/>
             <form-property name="hnom" type="java.lang.String"/>
             <form-property name="hdir" type="java.lang.String"/>
             <form-property name="htel" type="java.lang.String"/>
             <form-property name="hncamas" type="java.lang.String"/>
-        </form-beans>
+        </form-bean>
+        <form-bean name="Form13EliminarDepartamento" 
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="deptno" type="java.lang.String"/>
+        </form-bean>
+    </form-beans>
     
     <global-exceptions>    
     </global-exceptions>
 
     <global-forwards>
-        <forward name="welcome" path="/Welcome.do"/>
-        <forward name="respuestacorrecta" path="/web01respuestacorrecta.jsp"/>
-        <forward name="buscardepartamentos" path="/web07buscardepartamentos.jsp"/>
+        <forward name="web14detallesempleado"
+                 path="/web14detallesempleado.jsp"/>
+        <forward name="web14empleados"
+                 path="/web14empleados.jsp"/>
+        <forward name="web13eliminardepartamento"
+                 path="/web13eliminardepartamento.jsp"/>
+        <forward name="webmenudeptsdinamico"
+                 path="/web09menudepartamentodinamico.jsp"/>
+        <forward name="webdetallesdepartamento" 
+                 path="/web09detallesdepartamento.jsp"/>
+        <forward name="webdepartamentos" 
+                 path="/web06departamentos.jsp"/>
+        <forward name="welcome" 
+                 path="/Welcome.do"/>
+        <forward name="respuestacorrecta" 
+                 path="/web01respuestacorrecta.jsp"/>
+        <forward name="buscardepartamentos" 
+                 path="/web07buscardepartamentos.jsp"/>
     </global-forwards>
     
     <!--    path  - Name of the Action.
@@ -61,6 +81,24 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
+        <action path="/Action14DetallesEmpleado" type="controllers.Action14DetallesEmpleado"/>
+        <action path="/Action14ApellidoEmpleados" 
+                type="controllers.Action14ApellidoEmpleados"
+                scope="request"/>
+        <action path="/Action13EliminarDepartamento" 
+                type="controllers.Action13EliminarDepartamento"
+                name="Form13EliminarDepartamento"
+                scope="request"/>
+        <action path="/Action13TablaDepartamentos" 
+                type="controllers.Action13TablaDepartamentos"
+                scope="request"/>
+        <action path="/Action09EmpleadosDepartamento" 
+                type="controllers.Action09EmpleadosDepartamento"/>
+        <action path="/Action09MenuDepartamentosDinamico" 
+                type="controllers.Action09MenuDepartamentosDinamico"/>
+        <action path="/Action09DetallesDepartamento" 
+                type="controllers.Action09DetallesDepartamento"
+                scope="request"/>
         <action path="/Raction09InsertHospitales" 
                 type="controllers.Raction09InsertHospitales"
                 name="Rform09InsertHospitales"

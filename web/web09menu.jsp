@@ -18,21 +18,14 @@
     <body>
         <h1>Menu de Struts</h1>
         <ul>
-            <li>
-                <html:link href="web02sumarnumeros.jsp">
-                    Sumar números
-                </html:link>
-            </li>
-            <li>
-                <html:link action="/Action06Departamentos">
-                    Departamentos
-                </html:link>
-            </li>
-            <li>
-                <html:link href="web09menudepartamentosestatico.jsp">
-                    Menú departamentos estático
-                </html:link>
-            </li>
+            <li><html:link href="web02sumarnumeros.jsp">Sumar números</html:link></li>
+                <!--Cómo se entera el sistema de la parte de la tabla que está
+                    en web06departamentos.jsp? -->
+            <li><html:link action="/Action06Departamentos">Departamentos</html:link></li>
+            <li><html:link href="web09menudepartamentosestatico.jsp">Menú departamentos estático</html:link></li>
+            <li><html:link action="/Action09MenuDepartamentosDinamico">Menú departamentos dinámico</html:link></li>
+            <li><html:link action="/Action13TablaDepartamentos">Menú Eliminar Departamento</html:link></li>
+            <li><html:link action="/Action14ApellidoEmpleados">Menú Detalles Empleado Dinámico</html:link></li>
         </ul>
     </body>
 </html>

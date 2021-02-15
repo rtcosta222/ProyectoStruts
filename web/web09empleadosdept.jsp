@@ -16,6 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Empleados Oficio</h1>
+        <logic:present name="empleadosdept">
+            <bean:write name="empleadosdept" filter="false"/>
+        </logic:present>
     </body>
 </html>

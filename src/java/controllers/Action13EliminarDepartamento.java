@@ -5,26 +5,29 @@
  */
 package controllers;
 
-import java.util.ArrayList;
+import Beans.BeanDepartamentos;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Departamento;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import repositories.RepositoryDepartamentos;
 
 /**
  *
  * @author lscar
  */
-public class Action06Departamentos extends org.apache.struts.action.Action {
+public class Action13EliminarDepartamento extends org.apache.struts.action.Action {
 
+    BeanDepartamentos bean;
     RepositoryDepartamentos repo;
     
-    public Action06Departamentos() {
+    public Action13EliminarDepartamento(){
+        this.bean = new BeanDepartamentos();
         this.repo = new RepositoryDepartamentos();
     }
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -36,20 +39,16 @@ public class Action06Departamentos extends org.apache.struts.action.Action {
      * @return
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, 
-                                ActionForm form,
-                                HttpServletRequest request,    
-                                HttpServletResponse response) throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
         
-        ArrayList<Departamento> depts = this.repo.getDepartamentos();
-        String html = "";
-        for(Departamento d: depts) {
-            html += "<tr><td>" + d.getNumero()+ "</td>"
-                   + "<td>" + d.getNombre()+ "</td>"
-                   + "<td>" + d.getLocalidad()+ "</td></tr>";
-        }
-        request.setAttribute("datosdept", html);
-        // Volvemos a la misma View.
-        return mapping.getInputForward();
+        DynaActionForm formulario = (DynaActionForm)form;
+        String dato = formulario.get("deptno").toString();
+        int iddepartamento = Integer.parseInt(dato);
+        this.repo.eliminarDEpartamento(iddepartamento);
+        String html = this.bean.getDepartamentos();
+        request.setAttribute("tabladepartamentos", html);
+        return mapping.findForward("web13eliminardepartamento");
     }
 }

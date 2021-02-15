@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import models.Departamento;
+import models.Empleado;
 import oracle.jdbc.OracleDriver;
 
 /**
@@ -26,6 +27,21 @@ public class RepositoryDepartamentos {
         String path = "jdbc:oracle:thin:@localhost:1521:xe";
         Connection conn = DriverManager.getConnection(path, "system", "oracle");
         return conn;
+    }
+    
+    public ArrayList<String> getDeptsName() throws SQLException {
+        Connection z_conn = this.getConnection();
+        String z_sql = "select dnombre from dept";
+        Statement z_st = z_conn.createStatement();
+        ResultSet z_rs = z_st.executeQuery(z_sql);
+        ArrayList<String> deptnombres = new ArrayList<>();
+        while (z_rs.next()) {
+            String z_deptnombre = z_rs.getString("DNOMBRE");
+            deptnombres.add(z_deptnombre);
+        }
+        z_rs.close();
+        z_conn.close();
+        return deptnombres;
     }
     
     public ArrayList<Departamento> getDepartamentos() throws SQLException {
@@ -71,5 +87,14 @@ public class RepositoryDepartamentos {
         z_pst.setString(3, loc);
         z_pst.executeUpdate();
         z_conn.close();
+    }
+    
+    public void eliminarDEpartamento(int iddepartamento) throws SQLException {
+        Connection cn = this.getConnection();
+        String sql = "delete from dept where dept_no=?";
+        PreparedStatement pst = cn.prepareStatement(sql);
+        pst.setInt(1, iddepartamento);
+        pst.executeUpdate();
+        cn.close();
     }
 }

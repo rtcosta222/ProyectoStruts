@@ -25,12 +25,21 @@ public class BeanDepartamentos {
     public String getDepartamentos() throws SQLException {
         
         ArrayList<Departamento> depts = this.repo.getDepartamentos();
-        String html = "";
+        String html = "<table>";
         for(Departamento d: depts) {
             html += "<tr><td>" + d.getNumero()+ "</td>"
                    + "<td>" + d.getNombre()+ "</td>"
                    + "<td>" + d.getLocalidad()+ "</td></tr>";
         }
+        html += "</table>";
+        return html;
+    }
+    
+    public String getDetallesDepartamento(int deptno) throws SQLException {
+        Departamento departamento = this.repo.getDepartamento(deptno);
+        String html = "<h1 style='color:blue'>Nombre: " + departamento.getNombre() + "</h1>";
+        html += "<h1 style='color:red'>Localidad: " + departamento.getLocalidad() + "</h1>";
+        html += "<h2 style='color:green'>Número: " + departamento.getNumero() + "</h2>";
         return html;
     }
 }

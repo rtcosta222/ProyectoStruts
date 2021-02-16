@@ -81,7 +81,8 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
-        <action path="/Action14DetallesEmpleado" type="controllers.Action14DetallesEmpleado"/>
+        <action path="/Action14DetallesEmpleado" 
+                type="controllers.Action14DetallesEmpleado"/>
         <action path="/Action14ApellidoEmpleados" 
                 type="controllers.Action14ApellidoEmpleados"
                 scope="request"/>

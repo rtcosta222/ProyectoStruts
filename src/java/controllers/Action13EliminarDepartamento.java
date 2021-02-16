@@ -47,6 +47,7 @@ public class Action13EliminarDepartamento extends org.apache.struts.action.Actio
         String dato = formulario.get("deptno").toString();
         int iddepartamento = Integer.parseInt(dato);
         this.repo.eliminarDEpartamento(iddepartamento);
+
         String html = this.bean.getDepartamentos();
         request.setAttribute("tabladepartamentos", html);
         return mapping.findForward("web13eliminardepartamento");

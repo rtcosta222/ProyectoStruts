@@ -47,12 +47,17 @@
                    type="org.apache.struts.action.DynaActionForm">
             <form-property name="deptno" type="java.lang.String"/>
         </form-bean>
+        <form-bean name="Form15EliminarEnfermo" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="inscripcion" type="java.lang.String"/>
+        </form-bean>
     </form-beans>
     
     <global-exceptions>    
     </global-exceptions>
 
     <global-forwards>
+        <forward name="web16eliminarenfermos"
+                 path="/web16eliminarenfermos.jsp"/>
         <forward name="web14detallesempleado"
                  path="/web14detallesempleado.jsp"/>
         <forward name="web14empleados"
@@ -81,6 +86,10 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
+        <action path="/Action15EliminarEnfermo" 
+                type="controllers.Action15EliminarEnfermo"
+                name="Form15EliminarEnfermo"
+                scope="request"/>
         <action path="/Action14DetallesEmpleado" 
                 type="controllers.Action14DetallesEmpleado"/>
         <action path="/Action14ApellidoEmpleados" 
@@ -198,6 +207,8 @@
 
     Paths found in Tiles definitions are relative to the main context.
     -->
+    <plug-in className="plugins.PlugInEnfermos"></plug-in>    
+    <plug-in className="plugins.PlugInDepartamentos"></plug-in>
     <plug-in className="org.apache.struts.tiles.TilesPlugin" >
         <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />      
         <set-property property="moduleAware" value="true" />

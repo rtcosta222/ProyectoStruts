@@ -6,26 +6,27 @@
 package controllers;
 
 import Beans.BeanDepartamentos;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Enfermo;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import repositories.RepositoryDepartamentos;
+import repositories.RepositoryEnfermos;
 
 /**
  *
  * @author lscar
  */
-public class Action13EliminarDepartamento extends org.apache.struts.action.Action {   
+public class Action15EliminarEnfermo extends org.apache.struts.action.Action {
 
-    BeanDepartamentos bean;
-    RepositoryDepartamentos repo;
+    RepositoryEnfermos repo;
     
-    public Action13EliminarDepartamento(){
-        this.bean = new BeanDepartamentos();
-        this.repo = new RepositoryDepartamentos();
+    public Action15EliminarEnfermo(){
+        this.repo = new RepositoryEnfermos();
     }
 
     /**
@@ -44,12 +45,12 @@ public class Action13EliminarDepartamento extends org.apache.struts.action.Actio
             throws Exception {
         
         DynaActionForm formulario = (DynaActionForm)form;
-        String dato = formulario.get("deptno").toString();
-        int iddepartamento = Integer.parseInt(dato);
-        this.repo.eliminarDEpartamento(iddepartamento);
+        String ui = formulario.get("inscripcion").toString();
+        int z_inscripcion = Integer.parseInt(ui);
+        this.repo.eliminarEnfermo(z_inscripcion);
 
-        String html = this.bean.getDepartamentos();
-        request.setAttribute("tabladepartamentos", html);
-        return mapping.findForward("web13eliminardepartamento");
+        ArrayList<Enfermo> z_enfermos = this.repo.getEnfermos();
+        request.setAttribute("LISTAENFERMOS", z_enfermos);
+        return mapping.findForward("web16eliminarenfermos");
     }
 }

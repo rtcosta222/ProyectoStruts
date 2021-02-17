@@ -27,6 +27,16 @@ public class RepositoryEmpleados {
         return conn;
     }
     
+    public void incrementarSalarioEmpleado(int empno, int incremento) throws SQLException {
+        Connection z_conn = this.getConnection();
+        String z_sql = "update emp set salario=salario+? where emp_no=?";
+        PreparedStatement z_pst = z_conn.prepareStatement(z_sql);
+        z_pst.setInt(1, incremento);
+        z_pst.setInt(2, empno);
+        z_pst.executeUpdate();
+        z_conn.close();
+    }
+    
     public ArrayList<Empleado> getEmpleadoOficio(String oficio) throws SQLException {
         Connection cn = this.getConnection();
         String z_sql = "select * from emp where upper(oficio)=upper(?)";

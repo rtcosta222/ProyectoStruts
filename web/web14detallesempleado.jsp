@@ -24,7 +24,11 @@
     </head>
     <body>
         <h1>Detalles de Empleado</h1>
-        <html:link action="/Action14ApellidoEmpleados">Volver al menú Apellidos Empleado</html:link>
+        <html:link action="/Action14ApellidoEmpleados">Volver al menú Apellido Empleados</html:link>
+        <html:link action="/Action14DetallesEmpleado"
+                   paramId="empnoinc"
+                   paramName="EMPLEADO"
+                   paramProperty="idEmpleado">Incrementar salario</html:link>
         <logic:present name="detallesEmp">
             <bean:write name="detallesEmp" filter="false"/>
         </logic:present>

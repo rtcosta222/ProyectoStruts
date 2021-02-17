@@ -37,7 +37,7 @@ public class PlugInEnfermos implements PlugIn{
             servlet.getServletContext().setAttribute("LISTAENFERMOS", z_enfermos);
         } catch (SQLException ex) {
             System.out.println("Error SQL " + ex);
-            // Alternativa: throw new ServletException(ex.toString());)
+            // Alternativa: throw new ServletException(ex.toString());
         } 
     }
     

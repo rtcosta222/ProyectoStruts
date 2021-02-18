@@ -50,12 +50,22 @@
         <form-bean name="Form15EliminarEnfermo" type="org.apache.struts.action.DynaActionForm">
             <form-property name="inscripcion" type="java.lang.String"/>
         </form-bean>
+        <form-bean name="Form17EmpleadosDetallesCombo" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="idempleado" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="Form18EmpleadosOficioCombo" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="oficio" type="java.lang.String"/>
+        </form-bean>
     </form-beans>
     
     <global-exceptions>    
     </global-exceptions>
 
     <global-forwards>
+        <forward name="web18empleadosoficioscombo"
+                 path="/web18empleadosoficioscombo.jsp"/>
+        <forward name="web17empleadosdetallescombo"
+                 path="/web17empleadosdetallescombo.jsp"/>
         <forward name="web16eliminarenfermos"
                  path="/web16eliminarenfermos.jsp"/>
         <forward name="web14detallesempleado"
@@ -86,6 +96,14 @@
                     be returned if a validation error is encountered.
     -->
     <action-mappings>
+        <action path="/Action18EmpleadosOficioCombo" 
+                type="controllers.Action18EmpleadosOficioCombo"
+                name="Form18EmpleadosOficioCombo"
+                scope="request"/>
+        <action path="/Action17EmpleadosDetallesCombo" 
+                type="controllers.Action17EmpleadosDetallesCombo"
+                name="Form17EmpleadosDetallesCombo"
+                scope="request"/>
         <action path="/Action15EliminarEnfermo" 
                 type="controllers.Action15EliminarEnfermo"
                 name="Form15EliminarEnfermo"
@@ -207,6 +225,7 @@
 
     Paths found in Tiles definitions are relative to the main context.
     -->
+    <plug-in className="plugins.PlugInEmpleados"></plug-in>    
     <plug-in className="plugins.PlugInEnfermos"></plug-in>    
     <plug-in className="plugins.PlugInDepartamentos"></plug-in>
     <plug-in className="org.apache.struts.tiles.TilesPlugin" >

@@ -91,4 +91,19 @@ public class RepositoryEmpleados {
         cn.close();
         return empleado;  
     }
+    
+    public ArrayList<String> getOficios() throws SQLException {
+        Connection z_conn = this.getConnection();
+        String z_sql = "select distinct oficio from emp";
+        Statement z_st = z_conn.createStatement();
+        ResultSet z_rs = z_st.executeQuery(z_sql);
+        ArrayList<String> z_oficios = new ArrayList<>();
+        while (z_rs.next()) {
+            String z_oficio = z_rs.getString("OFICIO");
+            z_oficios.add(z_oficio);
+        }
+        z_rs.close();
+        z_conn.close();
+        return z_oficios;
+    }
 }

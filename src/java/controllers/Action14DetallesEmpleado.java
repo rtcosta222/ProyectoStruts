@@ -6,6 +6,7 @@
 package controllers;
 
 import Beans.BeanEmpleados;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Empleado;
@@ -15,7 +16,10 @@ import org.apache.struts.action.ActionMapping;
 import repositories.RepositoryEmpleados;
 
 /**
- *
+ * Obs.: Esta Action ha sido llamada desde dos Views distintas: 
+ *          web18empleadosoficioscombo.jsp y web14empleados.jsp, 
+ *       en contra de la afirmación "cada Action con su View".
+ * 
  * @author lscar
  */
 public class Action14DetallesEmpleado extends org.apache.struts.action.Action {
@@ -43,20 +47,23 @@ public class Action14DetallesEmpleado extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        String empnoinc = request.getParameter("empnoinc");
+        String idEmpleado = request.getParameter("idEmpIncrementar");
         String empno = request.getParameter("empno");
+        String z_oficio = request.getParameter("oficioSeleccionado");
         int z_empno;
-        if(empnoinc != null) {
-            z_empno = Integer.parseInt(empnoinc);
+        if(idEmpleado != null) {
+            z_empno = Integer.parseInt(idEmpleado);
             this.repo.incrementarSalarioEmpleado(z_empno, 1);
+            ArrayList<Empleado> z_emps = this.repo.getEmpleadoOficio(z_oficio);
+            request.setAttribute("empsOficio", z_emps);
+            return mapping.findForward("web18empleadosoficioscombo");
         } else {
             z_empno = Integer.parseInt(empno);
+            Empleado z_emp = this.repo.getDetallesEmp(z_empno);
+            request.setAttribute("EMPLEADO", z_emp);
+            String html = this.bean.getDetallesEmp(z_empno);
+            request.setAttribute("detallesEmp", html);
+            return mapping.findForward("web14detallesempleado");
         }
-        
-        Empleado z_emp = this.repo.getDetallesEmp(z_empno);
-        request.setAttribute("EMPLEADO", z_emp);
-        String html = this.bean.getDetallesEmp(z_empno);
-        request.setAttribute("detallesEmp", html);
-        return mapping.findForward("web14detallesempleado");
     }
 }

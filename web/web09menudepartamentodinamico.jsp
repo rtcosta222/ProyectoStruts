@@ -31,12 +31,5 @@
             </ul>
         </logic:present>
        
-        <ul>
-            <li>
-                <html:link action="/Action09DetallesDepartamento?iddepartamento=10">
-                    CONTABILIDAD
-                </html:link>
-            </li>
-        </ul>
     </body>
 </html>

@@ -14,15 +14,25 @@ public class Empleado {
     private String apellido;
     private String oficio;
     private int salario;
+    private int deptno;
 
     public Empleado() {
     }
     
-    public Empleado(int id, String ape, String ofi, int sal) {
+    public Empleado(int id, String ape, String ofi, int sal, int deptno) {
         this. idEmpleado = id;
         this.apellido = ape;
         this.oficio = ofi;
         this.salario = sal;
+        this.deptno = deptno;
+    }
+
+    public int getDeptno() {
+        return deptno;
+    }
+
+    public void setDeptno(int deptno) {
+        this.deptno = deptno;
     }
     public int getIdEmpleado() {
         return idEmpleado;

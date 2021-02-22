@@ -48,7 +48,8 @@ public class RepositoryEmpleados {
             Empleado emp = new Empleado(z_rs.getInt("EMP_NO"),
                                         z_rs.getString("APELLIDO"),
                                         z_rs.getString("OFICIO"),
-                                        z_rs.getInt("SALARIO"));
+                                        z_rs.getInt("SALARIO"),
+                                        z_rs.getInt("DEPT_NO"));
             listaempleadosporoficio.add(emp);   
         }
         z_rs.close();
@@ -66,7 +67,8 @@ public class RepositoryEmpleados {
             Empleado empleado = new Empleado(z_rs.getInt("EMP_NO"),
                                         z_rs.getString("APELLIDO"),
                                         z_rs.getString("OFICIO"),
-                                        z_rs.getInt("SALARIO"));
+                                        z_rs.getInt("SALARIO"),
+                                        z_rs.getInt("DEPT_NO"));
             listaempleados.add(empleado);   
         }
         z_rs.close();
@@ -85,7 +87,8 @@ public class RepositoryEmpleados {
             empleado = new Empleado(z_rs.getInt("EMP_NO"),
                                 z_rs.getString("APELLIDO"),
                                 z_rs.getString("OFICIO"),
-                                z_rs.getInt("SALARIO"));
+                                z_rs.getInt("SALARIO"),
+                                z_rs.getInt("DEPT_NO"));
         }
         z_rs.close();
         cn.close();
@@ -105,5 +108,53 @@ public class RepositoryEmpleados {
         z_rs.close();
         z_conn.close();
         return z_oficios;
+    }
+    
+    public ArrayList<Empleado> getEmpleadosDepartamentos(String[] datos) throws SQLException {
+        Connection z_conn = this.getConnection();
+        String deptnos = "";
+        for(String d: datos) {
+            deptnos += d + ",";
+        }
+        deptnos = deptnos.substring(0, deptnos.length() - 1);
+        String z_sql = "select * from emp where dept_no in(" + deptnos + ")";
+        Statement z_st = z_conn.createStatement();
+        ResultSet z_rs = z_st.executeQuery(z_sql);
+        ArrayList<Empleado> lista = new ArrayList<>();
+        while(z_rs.next()) {
+            Empleado emp = new Empleado(z_rs.getInt("EMP_NO"),
+                                z_rs.getString("APELLIDO"),
+                                z_rs.getString("OFICIO"),
+                                z_rs.getInt("SALARIO"),
+                                z_rs.getInt("DEPT_NO"));
+            lista.add(emp);
+        }
+        z_rs.close();
+        z_conn.close();
+        return lista;
+    }
+    
+        public ArrayList<Empleado> getEmpleadosOficios(String[] datos) throws SQLException {
+        Connection z_conn = this.getConnection();
+        String oficios = "";
+        for(String d: datos) {
+            oficios += d + "','";
+        }
+        oficios = oficios.substring(0, oficios.length() - 2);
+        String z_sql = "select * from emp where oficio in('" + oficios + ")";
+        Statement z_st = z_conn.createStatement();
+        ResultSet z_rs = z_st.executeQuery(z_sql);
+        ArrayList<Empleado> lista = new ArrayList<>();
+        while(z_rs.next()) {
+            Empleado emp = new Empleado(z_rs.getInt("EMP_NO"),
+                                z_rs.getString("APELLIDO"),
+                                z_rs.getString("OFICIO"),
+                                z_rs.getInt("SALARIO"),
+                                z_rs.getInt("DEPT_NO"));
+            lista.add(emp);
+        }
+        z_rs.close();
+        z_conn.close();
+        return lista;
     }
 }

@@ -7,10 +7,8 @@ package controllers;
 
 import Beans.BeanDepartamentos;
 import forms.Form082InsertarDepartamento;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Departamento;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -53,5 +51,6 @@ public class Action082InsertarDepartamento extends org.apache.struts.action.Acti
         this.repo.insertarDepartamento(z_deptno, z_dnombre, z_loc);
         String html = this.bean.getDepartamentos();
         request.setAttribute("datosdept", html);
-        return mapping.getInputForward();    }
+        return mapping.getInputForward();
+    }
 }

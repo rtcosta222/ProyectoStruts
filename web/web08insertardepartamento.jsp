@@ -25,7 +25,7 @@
         <h1>Insertar Dept</h1>
         <html:form action="/Action08InsertarDepartamento">
             <label>Introduzca DEPT_NO: </label>
-            <html:text property="deptno"/>
+            <html:text property="deptno" />
             <label>Introduzca DNOMBRE: </label>
             <html:text property="dnombre"/>
             <label>Introduzca LOC: </label>

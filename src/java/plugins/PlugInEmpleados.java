@@ -36,7 +36,7 @@ public class PlugInEmpleados implements PlugIn{
             ArrayList<Empleado> z_empleados = this.repo.getEmpleados();
             servlet.getServletContext().setAttribute("LISTEMPLEADOS", z_empleados);
             ArrayList<String> z_oficios = this.repo.getOficios();
-            servlet.getServletContext().setAttribute("LISTAOFICIOS", z_oficios);
+            servlet.getServletContext().setAttribute("LISTOFICIOS", z_oficios);
         } catch (SQLException ex) {
             System.out.println("Error SQL: " + ex);
             throw new ServletException("Error SQL: " + ex);
